@@ -17,7 +17,14 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
-    uniq_sides = {a, b, c}
+    sides = (a, b, c)
+    total = sum(sides)
+    for side in sides:
+        if side <= 0:
+            raise TriangleError("sides must be greater than 0")
+        if total - side <= side:
+            raise TriangleError("sum of any two sides should be greater than the third one")
+    uniq_sides = set(sides)
     if len(uniq_sides) == 1:
         return 'equilateral'
     elif len(uniq_sides) == 2:
